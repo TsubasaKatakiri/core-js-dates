@@ -56,7 +56,8 @@ function getDayName(date) {
     'Friday',
     'Saturday',
   ];
-  return weekdays[new Date(date).getDay()];
+  const currentDate = new Date(date);
+  return weekdays[currentDate.getUTCDay()];
 }
 
 /**
@@ -71,10 +72,10 @@ function getDayName(date) {
  * Date('2024-02-16T00:00:00Z') => Date('2024-02-23T00:00:00Z')
  */
 function getNextFriday(date) {
-  const currentDay = date.getDay();
+  const currentDay = date.getUTCDay();
   let dateDiff = 5 - currentDay;
   if (dateDiff <= 0) dateDiff = 7 - Math.abs(dateDiff);
-  return new Date(date.setDate(date.getDate() + dateDiff));
+  return new Date(date.setUTCDate(date.getUTCDate() + dateDiff));
 }
 
 /**
